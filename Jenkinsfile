@@ -1,11 +1,10 @@
 pipeline
 {
-agent none
+agent any
 stages
 {
  stage('scm checkout')
- { agent { label: 'JAVA' }
-  steps { git branch: 'master', url: 'https://github.com/abdalla-Salaheldin/mavenproject1.git' }}
+ { steps { git branch: 'master', url: 'https://github.com/abdalla-Salaheldin/mavenproject1.git' }}
 
  stage('code compile')
  { steps { withMaven(globalMavenSettingsConfig: '', jdk: 'JDK_HOME', maven: 'MVN_HOME', mavenSettingsConfig: '', traceability: true)  {
