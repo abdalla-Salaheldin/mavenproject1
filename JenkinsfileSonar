@@ -1,1 +1,35 @@
+pipeline {
+    agent any
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/abdalla-Salaheldin/mavenproject1.git'
+            }
+        }
+
+        stage('Execute Unit Test Framework') {
+            steps {
+                withMaven(globalMavenSettingsConfig: '', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME', mavenSettingsConfig: '', traceability: true) {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+
+        stage('Package Application') {
+            steps {
+                withMaven(globalMavenSettingsConfig: '', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME', mavenSettingsConfig: '', traceability: true) {
+                    sh 'mvn package'
+                }
+            }
+        }
+    }
+}
 
