@@ -9,7 +9,7 @@ pipeline {
 
         stage('Execute Unit Test Framework') {
             steps {
-                withMaven(maven: 'Maven 3.6.3', jdk: 'OpenJDK 11') {
+                withMaven(globalMavenSettingsConfig: '', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME', mavenSettingsConfig: '', traceability: true) {
                     sh 'mvn test'
                 }
             }
@@ -25,13 +25,13 @@ pipeline {
 
         stage('Package Application') {
             steps {
-                withMaven(maven: 'Maven 3.6.3', jdk: 'OpenJDK 11') {
+                withMaven(globalMavenSettingsConfig: '', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME', mavenSettingsConfig: '', traceability: true) {
                     sh 'mvn package'
                 }
             }
         }
-
-        stage('Deploy to Tomcat Dev') {
+		
+		stage('Deploy to Tomcat Dev') {
             steps {
                 sshagent(['tomcatdev']) {
                     sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@54.158.67.120:/usr/share/tomcat/webapps/'
