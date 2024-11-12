@@ -31,7 +31,7 @@ pipeline {
             }
         }
 		
-		stage('Deploy to Tomcat Dev') {
+		stage('Deploy to JBoss Dev') {
             steps {
                 sshagent(['JBossdev']) {
                     sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@54.86.96.8:/opt/wildfly/standalone/deployments'
