@@ -34,7 +34,7 @@ pipeline {
         stage('Deploy to JBoss Dev') {
             steps {
                 sshagent(['JBossdev']) {
-                    sh 'scp -o StrictHostKeyChecking=no target/webapp.war ec2-user@54.86.96.8:/opt/wildfly/standalone/deployments'
+                    sh 'scp -o StrictHostKeyChecking=no target/webapp.war ec2-user@54.227.97.190:/opt/wildfly/standalone/deployments'
                 }
             }
         }
