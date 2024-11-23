@@ -1,7 +1,7 @@
 #deploy application  tomcat jboss weblogic windowsiss
 FROM tomcat:jdk21
 
-LABEL author=prakash
+LABEL author=abdalla
 ENV APPPORT 8080
 ENV DESTPATH /usr/local/tomcat/webapps/
 
