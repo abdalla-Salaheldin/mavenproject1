@@ -16,5 +16,7 @@ stage('build and generate artifact')
 	sh 'mvn package'
  } }}
 
+stage('build the docker image')
+ { steps { sh'docker build -t abdalla7709/mavenproject:1.0 .'}}
 
 }}
