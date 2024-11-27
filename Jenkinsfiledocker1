@@ -20,4 +20,9 @@ stage('build the docker image')
  { steps { sh'docker build -t abdalla7709/mavenproject:1.0 .'
 	   sh'docker images'}}
 
+stage('upload docker to docker registary')
+ { steps { withDockerRegistry(credentialsId: 'dockercredentials', url: 'https://index.docker.io/v1/') 
+	   sh'docker push abdalla7709/mavenproject:1.0}}
+
+
 }}
